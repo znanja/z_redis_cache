@@ -97,7 +97,7 @@ class znanja_Cache_Redis extends Cache implements Kohana_Cache_Tagging
 	public function get($id, $default = NULL)
 	{
 		// We don't need Cache::_sanitize_id for Redis
-		$value = $this->_redis->get($id);
+		$value = base64_decode($this->_redis->get($id));
 		$value = json_decode($value, TRUE);
 
 		return $value !== FALSE ? $value : $default;
@@ -118,6 +118,7 @@ class znanja_Cache_Redis extends Cache implements Kohana_Cache_Tagging
 	 */
 	public function set($id, $data, $lifetime = 3600)
 	{
+		$data = base64_encode($data);
 		$data = json_encode($data);
 		
 		// No need to sanitize the ID

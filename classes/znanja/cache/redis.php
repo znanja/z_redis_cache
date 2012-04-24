@@ -101,7 +101,7 @@ class znanja_Cache_Redis extends Cache implements Kohana_Cache_Tagging
 		
 		try
 		{
-			$value = json_decode($data);
+			$value = json_decode($data, TRUE);
 		} catch(Exception $ex)
 		{
 			$value = $data;

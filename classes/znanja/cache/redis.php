@@ -99,10 +99,8 @@ class znanja_Cache_Redis extends Cache implements Kohana_Cache_Tagging
 		// We don't need Cache::_sanitize_id for Redis		
 		$data = $this->_redis->get($id);
 		
-		try
-		{
-			$value = json_decode($data, TRUE);
-		} catch(Exception $ex)
+		$value = json_decode($data, TRUE);
+		if($value === NULL)
 		{
 			$value = $data;
 		}

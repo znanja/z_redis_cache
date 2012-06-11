@@ -126,9 +126,13 @@ class znanja_Cache_Redis extends Cache implements Kohana_Cache_Tagging
 		try
 		{
 			$value = json_encode($data);
+			if($value == "null")
+			{
+				throw new Exception("invalid data, failing over")
+			}
 		} catch(Exception $ex)
 		{
-			$value = $data; 
+			$value = $data;
 		}
 		
 		// No need to sanitize the ID

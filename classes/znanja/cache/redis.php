@@ -128,7 +128,7 @@ class znanja_Cache_Redis extends Cache implements Kohana_Cache_Tagging
 			$value = json_encode($data);
 			if($value == "null")
 			{
-				throw new Exception("invalid data, failing over")
+				throw new Exception("invalid data, failing over");
 			}
 		} catch(Exception $ex)
 		{
